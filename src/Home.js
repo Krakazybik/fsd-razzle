@@ -1,8 +1,11 @@
+import { createRoute } from 'atomic-router';
 import React from 'react';
-import logo from './react.svg';
 import './Home.css';
+import logo from './react.svg';
 
-class Home extends React.Component {
+const route = createRoute();
+
+class Page extends React.Component {
   render() {
     return (
       <div className="Home">
@@ -30,4 +33,7 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export const HomePage = {
+  Page,
+  route,
+};

@@ -1,12 +1,15 @@
+import { RouterProvider, Route } from 'atomic-router-react';
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Home from './Home';
 import './App.css';
+import { HomePage } from './Home';
+import { router } from './app/routing';
+import { NotFoundPage } from './pages/not-found';
 
 const App = () => (
-  <Switch>
-    <Route exact={true} path="/" component={Home} />
-  </Switch>
+  <RouterProvider router={router}>
+    <Route route={HomePage.route} view={HomePage.Page} />
+    <Route route={NotFoundPage.route} view={NotFoundPage.Page} />
+  </RouterProvider>
 );
 
 export default App;
