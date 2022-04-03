@@ -1,9 +1,8 @@
 import { RouterProvider, Route } from 'atomic-router-react';
+import { HomePage } from 'pages/home';
+import { NotFoundPage } from 'pages/not-found';
 import React from 'react';
-import './App.css';
-import { HomePage } from './Home';
-import { router } from './app/routing';
-import { NotFoundPage } from './pages/not-found';
+import { router } from './routing';
 
 const App = () => (
   <RouterProvider router={router}>

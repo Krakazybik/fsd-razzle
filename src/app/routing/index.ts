@@ -1,9 +1,8 @@
-// app/routing
 import { createHistoryRouter } from 'atomic-router';
 import { sample } from 'effector';
 import { createBrowserHistory, createMemoryHistory } from 'history';
+import { HomePage } from 'pages/home';
 import { NotFoundPage } from 'pages/not-found';
-import { HomePage } from '../../Home';
 
 const isSsr = process.env.BUILD_TARGET === 'server';
 
@@ -14,6 +13,7 @@ const routes = [
 
 export const router = createHistoryRouter({
   routes,
+  hydrate: Boolean(isSsr),
 });
 
 const history = isSsr ? createMemoryHistory() : createBrowserHistory();
