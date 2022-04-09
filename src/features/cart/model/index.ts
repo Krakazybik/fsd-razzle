@@ -17,3 +17,37 @@ sample({
   clock: getCartItemsFx.doneData,
   target: $cartItems,
 });
+
+const addItemById = createEvent<string>();
+
+sample({
+  clock: addItemById,
+  source: $cartItems,
+  filter: (items, itemId) => !items.find((item) => item.id === itemId),
+  fn: (cartItems, id) => {
+    const item = cartItems.find((item) => item.id === id);
+    if (item) {
+      item.count += 1;
+      return [...cartItems.filter((item) => item.id !== id), item];
+    }
+    return [...cartItems];
+  },
+  target: $cartItems,
+});
+
+const remItemById = createEvent<string>();
+
+sample({
+  clock: remItemById,
+  source: $cartItems,
+  filter: (items, itemId) => !items.find((item) => item.id === itemId),
+  fn: (cartItems, id) => {
+    const item = cartItems.find((item) => item.id === id);
+    if (item) {
+      item.count -= 1;
+      return [...cartItems.filter((item) => item.id !== id), item];
+    }
+    return [...cartItems];
+  },
+  target: $cartItems,
+});
